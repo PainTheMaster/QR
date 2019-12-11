@@ -1,9 +1,8 @@
 package main
 
 import (
+	"PainTheMaster/QR/qr"
 	"fmt"
-
-	"./qr"
 )
 
 //A is a matrix
