@@ -6,44 +6,43 @@ import (
 	"./qr"
 )
 
+//A is a matrix
 var A [][]float64
-var X, Y []float64
+var y []float64
 
 func main() {
 
-	/*	A = make([][]float64, 3)
-		for i := 0; i <= 2; i++ {
-			A[i] = make([]float64, 3)
-		}
-	*/
 	A = [][]float64{{1.0, 2.0, 3.0},
-		{4.0, 5.0, 6.0},
-		{7.0, 8.0, 9.0},
+		{4.0, 5.0, 7.0},
+		{10, 8.0, 15},
 	}
 
-	H, diag := qr.HouseHolder(A, 0)
+	y = []float64{14.0, 35.0, 71.0}
 
-	C := multi(H, A)
+	qr.QR(A, y)
 
-	fmt.Println("diag:", diag)
-	fmt.Println("H:")
-	for i := range H {
-		for j := range H[i] {
-			fmt.Print(H[i][j], ", ")
+	x := qr.Solve(A, y)
+
+	fmt.Println("A:")
+	for i := range A {
+		for j := range A[i] {
+			fmt.Printf("%9.5f, ", A[i][j])
 		}
-		fmt.Println()
+		fmt.Println("")
 	}
 
-	fmt.Println("HA")
-	for i := range C {
-		for j := range C[i] {
-			fmt.Print(C[i][j], ", ")
-		}
-		fmt.Println()
+	fmt.Println("y:")
+	for i := range y {
+		fmt.Println(y[i])
 	}
 
+	fmt.Println("x:")
+	for i := range x {
+		fmt.Println(x[i])
+	}
 }
 
+/*
 func multi(A [][]float64, B [][]float64) (C [][]float64) {
 
 	size := len(A)
@@ -63,3 +62,4 @@ func multi(A [][]float64, B [][]float64) (C [][]float64) {
 
 	return
 }
+*/
